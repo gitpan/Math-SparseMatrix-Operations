@@ -1,7 +1,25 @@
+package Math::SparseMatrix::Operations;
+
 use v5.10;
-use strict;
-use warnings;
+
+use parent qw( Exporter );
+require Exporter;
 use Math::SparseMatrix;
+
+@ISA = ("Exporter");
+@EXPORT = qw(&op_fill_matrix 
+			&op_print_matrix
+			&op_transpose
+			&op_multiply
+			&op_identity
+			&op_subtraction
+			&op_addition
+			&op_dot_product
+			&op_get_col
+);
+
+use warnings;
+use strict;
 
 =head1 NAME
 
@@ -9,15 +27,15 @@ Math::SparseMatrix::Operations - Mathematical operations with matrices
 
 =head1 VERSION
 
-Version 0.02
+Version 0.04
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.04';
 
 
 # returns the position and the content of each cell.
-sub op_print_matrix() {
+sub op_print_matrix {
     my $matrix  = shift;
     my $rs = $matrix->{_rows};
     my $cs = $matrix->{_cols};
@@ -31,7 +49,7 @@ sub op_print_matrix() {
 }
 
 # each matrix cell recieves a '1' as a value.
-sub op_fill_matrix() {
+sub op_fill_matrix {
     my $matrix  = shift;
     my $rs = $matrix->{_rows};
     my $cs = $matrix->{_cols};
@@ -45,7 +63,7 @@ sub op_fill_matrix() {
 
 
 # standard matrix transposition.
-sub op_transpose() {
+sub op_transpose {
 	my $matrix  = shift;
 	my $rows = $matrix->{_rows};
 	my $cols = $matrix->{_cols};
@@ -62,7 +80,7 @@ sub op_transpose() {
 }
 
 # standard matrix multiplication
-sub op_multiply() {
+sub op_multiply {
 	my $matrix_a  = shift;
 	my $matrix_b  = shift;
 
@@ -91,7 +109,7 @@ sub op_multiply() {
 }
 
 # standard matrix identity
-sub identity() {
+sub op_identity {
 	my $size = shift;
 
 	if ($size < 1) {
@@ -107,7 +125,7 @@ sub identity() {
 }
 
 # standard matrix identity
-sub op_subtraction() {
+sub op_subtraction {
 	my $matrix_a = shift;
 	my $matrix_b = shift;
 
@@ -141,7 +159,7 @@ sub op_subtraction() {
 }
 
 # standard matrix addition.
-sub op_addition() {
+sub op_addition {
 	#weight matrix.
     my $matrix_a = shift;
 	#identity matrix.
@@ -173,7 +191,7 @@ sub op_addition() {
 }
 
 # standard matrix dot product.
-sub op_dot_product() {
+sub op_dot_product {
 	my $matrix_a = shift;
 	my $matrix_b = shift;
 	
@@ -206,7 +224,7 @@ sub op_dot_product() {
 }
 
 # returns a specifi column from the matrix.
-sub get_col() {
+sub op_get_col {
 	my $self = shift;
 	my $col  = shift;
 
@@ -227,7 +245,7 @@ sub get_col() {
 	return $new_matrix;
 }
 
-
+1;
 =head1 SYNOPSIS
 
 This module introduces new utilities and mathematical functions for matrices from the module Math::SparseMatrix. This is not a class module, it contains only
