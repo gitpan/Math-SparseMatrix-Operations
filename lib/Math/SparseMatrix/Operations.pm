@@ -27,11 +27,11 @@ Math::SparseMatrix::Operations - Mathematical operations with matrices
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 
 # returns the position and the content of each cell.

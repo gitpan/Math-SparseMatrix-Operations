@@ -20,4 +20,4 @@ no_index:
 requires:
   Math::SparseMatrix: 0.03
   perl: 5.006
-version: 0.04
+version: 0.05
