@@ -33,10 +33,10 @@
       "runtime" : {
          "requires" : {
             "Math::SparseMatrix" : "0.03",
-            "perl" : "5.006"
+            "perl" : "5.012"
          }
       }
    },
    "release_status" : "stable",
-   "version" : "0.05"
+   "version" : "0.06"
 }

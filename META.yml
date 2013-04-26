@@ -19,5 +19,5 @@ no_index:
     - inc
 requires:
   Math::SparseMatrix: 0.03
-  perl: 5.006
-version: 0.05
+  perl: 5.012
+version: 0.06

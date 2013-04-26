@@ -16,6 +16,7 @@ use Math::SparseMatrix;
 			&op_addition
 			&op_dot_product
 			&op_get_col
+			&op_get_row
 );
 
 use warnings;
@@ -31,7 +32,7 @@ Version 0.05
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
 # returns the position and the content of each cell.
@@ -223,7 +224,7 @@ sub op_dot_product {
 	return $result;
 }
 
-# returns a specifi column from the matrix.
+# returns a specific column from the matrix.
 sub op_get_col {
 	my $self = shift;
 	my $col  = shift;
@@ -242,6 +243,29 @@ sub op_get_col {
 		my $value = $matrix->get($row, $col);
 		$new_matrix->set($row, 1, $value);
 	}
+	return $new_matrix;
+}
+
+#returns a specific cow from the matrix.
+sub op_get_row {
+	my $self  = shift;
+	my $row   = shift;
+
+	my $matrix = $self->matrix();
+
+	my $matrix_cols = $self->matrix_cols();
+
+	if ($row > $matrix_cols) {
+		die "Can't get row";
+	}
+
+	my $new_matrix = Math::SparseMatrix->new(1, $matrix_cols);
+
+	for (my $col = 1; $col <= $matrix_cols; $col++) {
+		my $value = $matrix->get($row, $col);
+		$new_matrix->set(1, $col, $value);
+	}
+
 	return $new_matrix;
 }
 
@@ -271,15 +295,25 @@ This subroutines puts a number 1 inside each matrix cell.
 
 	# Input: $matrix_a.
 	# Output: none.
-	&op_fill_matrix(matrix_a);
+	&op_fill_matrix($matrix_a);
 
 =cut
 
 =head2 Get Column
 
-Returns a new Math::SparseMatrix object with the selected column.
+Returns a new Math::SparseMatrix object with the selected column. (Not tested yet!)
 
 	# Input: $matrix_a, $column_number.
+	# Output: $matrix_b.
+	my $matrix_b = &get_col($matrix_a, $column_number);
+
+=cut
+
+=head2 Get Row
+
+Returns a new Math::SparseMatrix object with the selected row. (Not Tested Yest!)
+
+	# Input: $matrix_a, $row_number.
 	# Output: $matrix_b.
 	my $matrix_b = &get_col($matrix_a, $column_number);
 
